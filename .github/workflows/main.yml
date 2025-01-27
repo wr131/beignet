@@ -5,13 +5,6 @@ on:
   pull_request:
     branches: [ "master" ]
 
-name: Build deb Package
-on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
-
 jobs:
 
   build:
@@ -51,7 +44,7 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake -DCOMPILER=GCC ../
+        cmake -DLLVM_INSTALL_DIR=/usr/lib/llvm-3.6 -DCOMPILER=GCC ../
         
     - name: Build the driver
       run: |
