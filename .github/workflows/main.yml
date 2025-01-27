@@ -26,6 +26,7 @@ jobs:
           gcc-9 \
           g++-9 \
           clang \
+          llvm \
           pkg-config \
           python3 \
           ocl-icd-dev \
@@ -44,7 +45,7 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake -DLLVM_INSTALL_DIR=/usr/lib/llvm-3.6 -DCOMPILER=GCC ../
+        cmake -DCOMPILER=GCC ../
         
     - name: Build the driver
       run: |
