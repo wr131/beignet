@@ -8,12 +8,19 @@ on:
 jobs:
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     
     steps:
     - uses: actions/checkout@v3
     
+    - name: Cache dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/deps
+        key: ${{ runner.os }}-deps-${{ hashFiles('**/requirements.txt') }}
+        
     - name: Install dependencies
+      if: steps.cache.outputs.cache-hit != 'true'
       run: |
         sudo apt-get update
         sudo apt-get install -y \
@@ -25,8 +32,7 @@ jobs:
           git \
           gcc-9 \
           g++-9 \
-          clang \
-          llvm \
+          clang-3.6 \
           pkg-config \
           python3 \
           ocl-icd-dev \
@@ -35,17 +41,18 @@ jobs:
           libdrm-dev \
           libxfixes-dev \
           libxext-dev \
-          llvm-dev \
-          libclang-dev \
+          llvm-3.6-dev \
+          libclang-3.6-dev \
           libtinfo-dev \
           libedit-dev \
           zlib1g-dev
+        mkdir -p ~/deps
         
     - name: Configure with CMake
       run: |
         mkdir build
         cd build
-        cmake -DCOMPILER=GCC ../
+        cmake -DLLVM_INSTALL_DIR=/usr/lib/llvm-3.6 -DCOMPILER=GCC ../
         
     - name: Build the driver
       run: |
