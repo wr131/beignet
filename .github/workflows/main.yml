@@ -25,7 +25,7 @@ jobs:
           git \
           gcc-9 \
           g++-9 \
-          clang-10
+          clang
         
     - name: Configure with CMake
       run: |
