@@ -52,7 +52,7 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake -DLLVM_INSTALL_DIR=/usr/lib/llvm-10 -DCOMPILER=GCC ../
+        cmake -DCOMPILER=GCC ../
         
     - name: Build the driver
       run: |
