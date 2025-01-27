@@ -46,7 +46,8 @@ jobs:
           libtinfo-dev \
           libedit-dev \
           zlib1g-dev \
-          llvm-10 
+          llvm-10 \
+          llvm
         mkdir -p ~/deps
 
     - name: Print llvm path
