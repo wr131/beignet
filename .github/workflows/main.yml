@@ -45,8 +45,13 @@ jobs:
           libclang-10-dev \
           libtinfo-dev \
           libedit-dev \
-          zlib1g-dev
+          zlib1g-dev \
+          llvm-10 
         mkdir -p ~/deps
+
+    - name: Print llvm path
+      run: |
+        llvm-config --prefix
         
     - name: Configure with CMake
       run: |
