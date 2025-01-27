@@ -32,7 +32,7 @@ jobs:
           git \
           gcc-9 \
           g++-9 \
-          clang-3.6 \
+          clang-10 \
           pkg-config \
           python3 \
           ocl-icd-dev \
@@ -41,8 +41,8 @@ jobs:
           libdrm-dev \
           libxfixes-dev \
           libxext-dev \
-          llvm-3.6-dev \
-          libclang-3.6-dev \
+          llvm-10-dev \
+          libclang-10-dev \
           libtinfo-dev \
           libedit-dev \
           zlib1g-dev
@@ -52,7 +52,7 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake -DLLVM_INSTALL_DIR=/usr/lib/llvm-3.6 -DCOMPILER=GCC ../
+        cmake -DLLVM_INSTALL_DIR=/usr/lib/llvm-10 -DCOMPILER=GCC ../
         
     - name: Build the driver
       run: |
